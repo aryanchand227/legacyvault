@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021425829396",
+    "project_id": "legacyvault-b0276",
+    "storage_bucket": "legacyvault-b0276.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021425829396:android:6f4338f822af8e4794c901",
+        "android_client_info": {
+          "package_name": "com.timecapsule.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaL1qGGtg2ab4gXuANURRqmiauiF-fxXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
