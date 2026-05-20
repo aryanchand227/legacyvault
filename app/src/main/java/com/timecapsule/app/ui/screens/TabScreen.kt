@@ -24,18 +24,18 @@ fun TabScreen(navController: NavController, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF16213E))
+            .background(MaterialTheme.colorScheme.background)
     ) {
 
         TabRow(
             selectedTabIndex = pagerState.currentPage,
-            containerColor = Color(0xFF1A1A2E),
-            contentColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.surface,
+            contentColor = MaterialTheme.colorScheme.onSurface,
             indicator = { tabPositions ->
                 if (pagerState.currentPage < tabPositions.size) {
                     TabRowDefaults.SecondaryIndicator(
                         modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                        color = Color(0xFFE94560),
+                        color = MaterialTheme.colorScheme.primary,
                         height = 3.dp
                     )
                 }
@@ -52,7 +52,7 @@ fun TabScreen(navController: NavController, modifier: Modifier = Modifier) {
                         Text(
                             text = title, 
                             fontWeight = if (pagerState.currentPage == index) FontWeight.Bold else FontWeight.Normal,
-                            color = if (pagerState.currentPage == index) Color.White else Color.Gray
+                            color = if (pagerState.currentPage == index) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
                         ) 
                     }
                 )

@@ -45,18 +45,18 @@ fun AnalyticsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Vault Insights", fontWeight = FontWeight.Bold, color = Color.White) },
+                title = { Text("Vault Insights", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF1A1A2E),
+                    containerColor = MaterialTheme.colorScheme.surface,
                 ),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.onSurface)
                     }
                 }
             )
         },
-        containerColor = Color(0xFF16213E)
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
         Column(
             modifier = Modifier
@@ -70,7 +70,7 @@ fun AnalyticsScreen(navController: NavController) {
                 text = "Summary",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Row(
@@ -82,31 +82,31 @@ fun AnalyticsScreen(navController: NavController) {
                     title = "Total",
                     value = total.toString(),
                     icon = Icons.Default.List,
-                    containerColor = Color(0xFF0F3460),
-                    contentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 StatCard(
                     modifier = Modifier.weight(1f),
                     title = "Opened",
                     value = opened.toString(),
                     icon = Icons.Default.LockOpen,
-                    containerColor = Color(0xFFE94560).copy(alpha = 0.2f),
-                    contentColor = Color(0xFFE94560)
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
+                    contentColor = MaterialTheme.colorScheme.primary
                 )
                 StatCard(
                     modifier = Modifier.weight(1f),
                     title = "Locked",
                     value = locked.toString(),
                     icon = Icons.Default.Lock,
-                    containerColor = Color(0xFF0F3460),
-                    contentColor = Color.LightGray
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Column(
                     modifier = Modifier.padding(24.dp),
@@ -116,7 +116,7 @@ fun AnalyticsScreen(navController: NavController) {
                         text = "Unlock Progress",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     
@@ -126,7 +126,7 @@ fun AnalyticsScreen(navController: NavController) {
                     LaunchedEffect(progress) {
                         animatedProgress = progress
                     }
-
+ 
                     val animatedValue by animateFloatAsState(
                         targetValue = animatedProgress,
                         animationSpec = tween(durationMillis = 1000),
@@ -137,14 +137,14 @@ fun AnalyticsScreen(navController: NavController) {
                         CircularProgressIndicator(
                             progress = { 1f },
                             modifier = Modifier.fillMaxSize(),
-                            color = Color(0xFF0F3460),
+                            color = MaterialTheme.colorScheme.surfaceVariant,
                             strokeWidth = 14.dp,
                             strokeCap = StrokeCap.Round
                         )
                         CircularProgressIndicator(
                             progress = { animatedValue },
                             modifier = Modifier.fillMaxSize(),
-                            color = Color(0xFFE94560),
+                            color = MaterialTheme.colorScheme.primary,
                             strokeWidth = 14.dp,
                             strokeCap = StrokeCap.Round
                         )
@@ -153,12 +153,12 @@ fun AnalyticsScreen(navController: NavController) {
                                 text = "${(animatedValue * 100).toInt()}%",
                                 fontSize = 32.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White
+                                color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
                                 text = "Legacy Opened",
                                 fontSize = 12.sp,
-                                color = Color.Gray
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }
@@ -169,21 +169,21 @@ fun AnalyticsScreen(navController: NavController) {
                 text = "Distribution",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Column(
                     modifier = Modifier.padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
-                    TypeStatRow("Personal", personalCount, total, Color(0xFFE94560))
-                    TypeStatRow("Motivation", motivationCount, total, Color(0xFF0F3460))
-                    TypeStatRow("Reminder", reminderCount, total, Color.Gray)
+                    TypeStatRow("Personal", personalCount, total, MaterialTheme.colorScheme.primary)
+                    TypeStatRow("Motivation", motivationCount, total, MaterialTheme.colorScheme.secondary)
+                    TypeStatRow("Reminder", reminderCount, total, MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }
@@ -256,13 +256,13 @@ fun TypeStatRow(title: String, count: Int, total: Int, color: Color) {
         ) {
             Text(
                 text = title,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
             Text(
                 text = count.toString(),
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -274,7 +274,7 @@ fun TypeStatRow(title: String, count: Int, total: Int, color: Color) {
                 .fillMaxWidth()
                 .height(10.dp),
             color = color,
-            trackColor = Color(0xFF0F3460),
+            trackColor = MaterialTheme.colorScheme.surfaceVariant,
             strokeCap = StrokeCap.Round
         )
     }

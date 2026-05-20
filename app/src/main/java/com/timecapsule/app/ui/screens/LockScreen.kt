@@ -40,7 +40,7 @@ fun LockedScreen() {
 
     if (lockedCapsules.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("No locked capsules", color = Color.Gray)
+            Text("No locked capsules", color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     } else {
         LazyColumn(
@@ -52,7 +52,7 @@ fun LockedScreen() {
                 Card(
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Box(
@@ -60,7 +60,7 @@ fun LockedScreen() {
                             .fillMaxWidth()
                             .background(
                                 brush = Brush.horizontalGradient(
-                                    colors = listOf(Color(0xFF1A1A2E), Color(0xFF16213E))
+                                    colors = listOf(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.background)
                                 )
                             )
                             .padding(20.dp)
@@ -69,13 +69,13 @@ fun LockedScreen() {
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
-                                    .background(Color(0xFF0F3460), RoundedCornerShape(12.dp)),
+                                    .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp)),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
                                     Icons.Default.Lock,
                                     contentDescription = "Locked",
-                                    tint = Color(0xFFE94560),
+                                    tint = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.size(28.dp)
                                 )
                             }
@@ -88,18 +88,18 @@ fun LockedScreen() {
                                         text = capsule.title,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 18.sp,
-                                        color = Color.White
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Surface(
                                         shape = RoundedCornerShape(8.dp),
-                                        color = Color(0xFFE94560).copy(alpha = 0.2f)
+                                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                                     ) {
                                         Text(
                                             text = capsule.type,
                                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                                             fontSize = 11.sp,
-                                            color = Color(0xFFE94560),
+                                            color = MaterialTheme.colorScheme.primary,
                                             fontWeight = FontWeight.Medium
                                         )
                                     }
@@ -108,7 +108,7 @@ fun LockedScreen() {
                                 Text(
                                     text = "Unlocks: ${formatter.format(Date(capsule.openTime))}",
                                     fontSize = 13.sp,
-                                    color = Color.LightGray
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -116,7 +116,7 @@ fun LockedScreen() {
                                         imageVector = Icons.Default.Timer,
                                         contentDescription = "Time left",
                                         modifier = Modifier.size(16.dp),
-                                        tint = Color(0xFFE94560)
+                                        tint = MaterialTheme.colorScheme.primary
                                     )
                                     Spacer(modifier = Modifier.width(6.dp))
                                     LiveTimer(openTime = capsule.openTime)
@@ -152,7 +152,7 @@ fun LiveTimer(openTime: Long) {
         text = text,
         fontSize = 13.sp,
         fontWeight = FontWeight.Bold,
-        color = Color(0xFFE94560)
+        color = MaterialTheme.colorScheme.primary
     )
 }
 

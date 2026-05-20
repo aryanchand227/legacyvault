@@ -35,18 +35,18 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("How do you feel?", fontWeight = FontWeight.Bold, color = Color.White) },
+                title = { Text("How do you feel?", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF1A1A2E),
+                    containerColor = MaterialTheme.colorScheme.surface,
                 ),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.onSurface)
                     }
                 }
             )
         },
-        containerColor = Color(0xFF16213E)
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
         Column(
             modifier = Modifier
@@ -59,7 +59,7 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
                 text = "Reflect on this moment",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -70,7 +70,7 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = null,
-                        tint = if (i <= rating) Color(0xFFFFD700) else Color.DarkGray,
+                        tint = if (i <= rating) Color(0xFFFFD700) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
                         modifier = Modifier
                             .size(48.dp)
                             .clickable { rating = i }
@@ -81,7 +81,7 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
             Spacer(modifier = Modifier.height(32.dp))
 
             // Emoji Reactions
-            Text(text = "Choose an emoji reaction", color = Color.LightGray, fontSize = 16.sp)
+            Text(text = "Choose an emoji reaction", color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f), fontSize = 16.sp)
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -93,14 +93,14 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
                             modifier = Modifier
                                 .size(56.dp)
                                 .clip(CircleShape)
-                                .background(if (selectedEmoji == emoji) Color(0xFFE94560) else Color(0xFF0F3460))
+                                .background(if (selectedEmoji == emoji) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant)
                                 .clickable { selectedEmoji = emoji },
                             contentAlignment = Alignment.Center
                         ) {
                             Text(text = emoji, fontSize = 28.sp)
                         }
                         Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = emojiLabels[index], fontSize = 12.sp, color = Color.LightGray)
+                        Text(text = emojiLabels[index], fontSize = 12.sp, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
                     }
                 }
             }
@@ -111,15 +111,17 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
             OutlinedTextField(
                 value = reflectionNotes,
                 onValueChange = { reflectionNotes = it },
-                label = { Text("Reflection Notes", color = Color.Gray) },
+                label = { Text("Reflection Notes", color = MaterialTheme.colorScheme.onSurfaceVariant) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.White,
-                    unfocusedTextColor = Color.White,
-                    focusedBorderColor = Color(0xFF0F3460),
-                    unfocusedBorderColor = Color.DarkGray
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+                    focusedLabelColor = MaterialTheme.colorScheme.primary,
+                    unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
                 ),
                 shape = RoundedCornerShape(16.dp)
             )
@@ -135,10 +137,10 @@ fun EmotionScreen(capsuleId: String, navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94560)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Save Reflection", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Text("Save Reflection", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
             }
         }
     }

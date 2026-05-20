@@ -36,7 +36,7 @@ fun OpenedScreen(navController: NavController) {
 
     if (openedCapsules.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("No opened capsules", color = Color.Gray)
+            Text("No opened capsules", color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     } else {
         LazyColumn(
@@ -48,7 +48,7 @@ fun OpenedScreen(navController: NavController) {
                 Card(
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { navController.navigate("detail/${capsule.id}") }
@@ -58,7 +58,7 @@ fun OpenedScreen(navController: NavController) {
                             .fillMaxWidth()
                             .background(
                                 brush = Brush.horizontalGradient(
-                                    colors = listOf(Color(0xFF1A1A2E), Color(0xFF16213E))
+                                    colors = listOf(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.background)
                                 )
                             )
                             .padding(20.dp)
@@ -67,13 +67,13 @@ fun OpenedScreen(navController: NavController) {
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
-                                    .background(Color(0xFF0F3460), RoundedCornerShape(12.dp)),
+                                    .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp)),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
                                     Icons.Default.Email,
                                     contentDescription = "Opened",
-                                    tint = Color(0xFFE94560),
+                                    tint = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.size(28.dp)
                                 )
                             }
@@ -83,33 +83,33 @@ fun OpenedScreen(navController: NavController) {
                                     text = capsule.title,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 18.sp,
-                                    color = Color.White
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = "Type: ${capsule.type}",
                                     fontSize = 13.sp,
-                                    color = Color.LightGray
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                             if (capsule.emotion != null) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier
-                                        .background(Color(0xFF0F3460), RoundedCornerShape(12.dp))
+                                        .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
                                         .padding(horizontal = 10.dp, vertical = 6.dp)
                                 ) {
                                     Text(
                                         text = "${capsule.emotion}", 
                                         fontWeight = FontWeight.Bold, 
-                                        color = Color(0xFFFFD700),
+                                        color = MaterialTheme.colorScheme.tertiary,
                                         fontSize = 14.sp
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Icon(
                                         Icons.Default.Star, 
                                         contentDescription = "Rating", 
-                                        tint = Color(0xFFFFD700), 
+                                        tint = MaterialTheme.colorScheme.tertiary, 
                                         modifier = Modifier.size(16.dp)
                                     )
                                 }

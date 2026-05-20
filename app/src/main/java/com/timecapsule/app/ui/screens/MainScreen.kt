@@ -43,12 +43,12 @@ fun MainScreen(navController: NavController) {
                     Text(
                         text = "LegacyVault",
                         fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 20.sp
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF1A1A2E)
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 actions = {
                     // Quick Dark Mode Toggle
@@ -60,7 +60,7 @@ fun MainScreen(navController: NavController) {
                         Icon(
                             imageVector = if (darkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
                             contentDescription = "Toggle Theme",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                     
@@ -71,13 +71,13 @@ fun MainScreen(navController: NavController) {
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
-                                .background(Color(0xFFE94560), CircleShape),
+                                .background(MaterialTheme.colorScheme.primary, CircleShape),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Person,
                                 contentDescription = "Profile",
-                                tint = Color.White,
+                                tint = MaterialTheme.colorScheme.onPrimary,
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -90,7 +90,7 @@ fun MainScreen(navController: NavController) {
                         Icon(
                             imageVector = Icons.Default.Settings,
                             contentDescription = "Settings",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }
@@ -98,8 +98,8 @@ fun MainScreen(navController: NavController) {
         },
         bottomBar = {
             NavigationBar(
-                containerColor = Color(0xFF1A1A2E),
-                contentColor = Color.White
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface
             ) {
                 val items = listOf(
                     BottomNavItem.Home,
@@ -108,8 +108,8 @@ fun MainScreen(navController: NavController) {
                 )
                 items.forEach { item ->
                     NavigationBarItem(
-                        icon = { Icon(item.icon, contentDescription = item.label, tint = if (selectedItem == item) Color(0xFFE94560) else Color.Gray) },
-                        label = { Text(item.label, color = if (selectedItem == item) Color.White else Color.Gray) },
+                        icon = { Icon(item.icon, contentDescription = item.label, tint = if (selectedItem == item) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant) },
+                        label = { Text(item.label, color = if (selectedItem == item) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant) },
                         selected = selectedItem == item,
                         onClick = { 
                             if (item == BottomNavItem.Create) {
@@ -119,7 +119,7 @@ fun MainScreen(navController: NavController) {
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            indicatorColor = Color(0xFFE94560).copy(alpha = 0.2f)
+                            indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                         )
                     )
                 }
@@ -130,7 +130,7 @@ fun MainScreen(navController: NavController) {
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .background(Color(0xFF16213E))
+                .background(MaterialTheme.colorScheme.background)
         ) {
             when (selectedItem) {
                 is BottomNavItem.Home -> HomeScreen(navController)
@@ -157,34 +157,34 @@ fun HomeScreen(navController: NavController) {
             text = "Welcome to LegacyVault",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
             text = "Hello, ${user?.displayName ?: user?.email?.split("@")?.get(0) ?: "User"}",
             fontSize = 18.sp,
-            color = Color.LightGray
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
         )
         Spacer(modifier = Modifier.height(36.dp))
         Card(
             shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
         ) {
             Column(modifier = Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Icon(Icons.Default.Security, contentDescription = null, tint = Color(0xFFE94560), modifier = Modifier.size(48.dp))
+                Icon(Icons.Default.Security, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "Your digital legacy is fully secured",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "Create time-locked memory capsules and share them with the people you love. They will unlock only at your designated time.",
                     fontSize = 13.sp,
-                    color = Color.Gray,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
             }
